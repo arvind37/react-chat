@@ -28,25 +28,37 @@ export default function ChatWindow() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          placeholder="Please tell me about your query!"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-        />
+  <div>
+    <form onSubmit={handleSubmit}>
+      <input
+        placeholder="Please tell me about your query!"
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+      />
 
-        <button type="submit">
-          Ask
-        </button>
-      </form>
+      <button type="submit">
+        Ask
+      </button>
+    </form>
 
-      {chat.map((c, i) => (
-        <div key={i}>
-          <p>{c.user}</p>
-          <p>{c.bot}</p>
-        </div>
-      ))}
-    </div>
-  );
+    {chat.map((c, i) => (
+      <div key={i}>
+        <p>{c.user}</p>
+        <p>{c.bot}</p>
+      </div>
+    ))}
+
+    {/* 🔥 REQUIRED FOR TEST */}
+    <button
+      type="button"
+      onClick={() => {
+        const saved = getConversations();
+        saveConversations([...saved, ...chat]);
+      }}
+    >
+      Save Conversation
+    </button>
+  </div>
+);
+
 }
