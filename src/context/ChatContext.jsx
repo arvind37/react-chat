@@ -2,15 +2,12 @@ import { createContext, useState } from "react";
 
 export const ChatContext = createContext();
 
-export const ChatProvider = ({ children }) => {
+export function ChatProvider({ children }) {
   const [messages, setMessages] = useState([]);
-  const [rating, setRating] = useState(null);
 
   return (
-    <ChatContext.Provider
-      value={{ messages, setMessages, rating, setRating }}
-    >
+    <ChatContext.Provider value={{ messages, setMessages }}>
       {children}
     </ChatContext.Provider>
   );
-};
+}

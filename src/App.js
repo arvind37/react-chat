@@ -7,6 +7,7 @@ function App() {
     <BrowserRouter>
       <header>
         <h1>Customer Support AI</h1>
+
         <nav>
           <Link to="/">Home</Link>
           <Link to="/history">Past Conversations</Link>

@@ -1,9 +1,4 @@
 {
-  "hello": "Hello! How can I assist you today?",
-  "refund": "You can request a refund within 7 days of purchase.",
-  "delivery": "Delivery usually takes 3-5 business days.",
-  "payment": "We support credit cards, UPI and PayPal.",
-  "account": "You can manage your account from the profile section.",
-    "contact support": "You can contact our customer support via email at support@example.com or call us at +1-800-123-4567.",
-  "refund policy": "Our refund policy allows returns within 30 days of purchase."
+  "Hello": "Hello! How can I assist you today?",
+  "How do I contact customer support?": "You can contact our customer support via email at support@example.com or call us at +1-800-123-4567."
 }

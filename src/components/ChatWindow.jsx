@@ -1,51 +1,52 @@
-import { useContext, useState } from "react";
-import { ChatContext } from "../context/ChatContext";
+import { useState } from "react";
 import replies from "../data/replies.json";
-import ChatMessage from "./ChatMessage";
+import { saveConversations, getConversations } from "../utils/localStorageHelpers";
 
 export default function ChatWindow() {
-  const { messages, setMessages } = useContext(ChatContext);
-  const [input, setInput] = useState("");
+  const [message, setMessage] = useState("");
+  const [chat, setChat] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const userMsg = input.toLowerCase();
-    setMessages((prev) => [...prev, { text: input, bot: false }]);
-
-    const reply =
-      replies[userMsg] ||
+    let reply =
+      replies[message] ||
       "Sorry, Did not understand your query!";
 
-    setMessages((prev) => [
-      ...prev,
-      { text: input, bot: false },
-      { text: reply, bot: true }
-    ]);
+    const updatedChat = [
+      ...chat,
+      { user: message, bot: reply }
+    ];
 
-    setInput("");
+    setChat(updatedChat);
+
+    // Save to localStorage
+    const saved = getConversations();
+    saveConversations([...saved, ...updatedChat]);
+
+    setMessage("");
   };
 
   return (
     <div>
-      <div className="chat-box">
-        {messages.map((msg, index) => (
-          <ChatMessage
-            key={index}
-            message={msg.text}
-            isBot={msg.bot}
-          />
-        ))}
-      </div>
-
       <form onSubmit={handleSubmit}>
         <input
           placeholder="Please tell me about your query!"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
         />
-        <button type="submit">Ask</button>
+
+        <button type="submit">
+          Ask
+        </button>
       </form>
+
+      {chat.map((c, i) => (
+        <div key={i}>
+          <p>{c.user}</p>
+          <p>{c.bot}</p>
+        </div>
+      ))}
     </div>
   );
 }
