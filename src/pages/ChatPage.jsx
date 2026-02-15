@@ -1,21 +1,17 @@
 import ChatWindow from "../components/ChatWindow";
 import ThemeToggle from "../components/ThemeToggle";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function ChatPage() {
-  const navigate = useNavigate();
-
   return (
     <div>
-      <h1>Customer Support AI</h1>
       <ThemeToggle />
-      <button onClick={() => navigate("/history")}>
-        Past Conversations
-      </button>
+
+      <Link to="/history">Past Conversations</Link>
+
       <ChatWindow />
-      <button type="button" onClick={() => window.location.reload()}>
-        New Query?
-      </button>
+
+      <Link to="/">New Query?</Link>
     </div>
   );
 }

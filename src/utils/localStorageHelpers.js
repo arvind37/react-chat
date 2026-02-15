@@ -1,7 +1,5 @@
-export const saveConversation = (conversation) => {
-  const existing = JSON.parse(localStorage.getItem("conversations")) || [];
-  existing.push(conversation);
-  localStorage.setItem("conversations", JSON.stringify(existing));
+export const saveConversations = (data) => {
+  localStorage.setItem("conversations", JSON.stringify(data));
 };
 
 export const getConversations = () => {
